@@ -2,6 +2,9 @@ package hello.core;
 
 import hello.core.member.*;
 
+/**
+ * Member 도메인 테스트
+ */
 public class MemberApp {
 
     public static void main(String[] args) {
