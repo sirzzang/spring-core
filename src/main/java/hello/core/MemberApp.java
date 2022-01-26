@@ -9,7 +9,9 @@ public class MemberApp {
 
     public static void main(String[] args) {
         // 회원 가입
-        MemberService memberService = new MemberServiceImpl();
+//        MemberService memberService = new MemberServiceImpl();
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
         Member member = new Member(1L, "eraser", Grade.VIP);
         memberService.join(member);
 

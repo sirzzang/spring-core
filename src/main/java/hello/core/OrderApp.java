@@ -16,8 +16,11 @@ public class OrderApp {
 
     public static void main(String[] args) {
         // 서비스
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+//        MemberService memberService = new MemberServiceImpl();
+//        OrderService orderService = new OrderServiceImpl();
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
 
         // 회원
         Long memberId = 1L;
