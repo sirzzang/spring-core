@@ -6,13 +6,18 @@ import hello.core.member.MemberServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * 현재까지의 DI 컨테이너 방식으로는 요청이 올 때마다 bean instance가 생성되었다
+ * 현재까지의 DI 컨테이너 방식으로는 요청이 올 때마다 bean instance가 생성되었다.
  * - 스프링 없는 순수한 DI 컨테이너: AppConfig
  * - MemberService 인스턴스가 JVM 메모리에 계속 올라감
+ * 싱글톤 패턴을 적용하여 인스턴스를 사용해야 하는데, 직접 하기에는 문제점이 많다.
+ * 스프링 컨테이너를 사용하면 알아서 싱글톤으로 관리된다.
+ * 따라서, 이미 만들어진 객체를 공유해서 효율적으로 재사용할 수 있다.
  */
 public class SingletonTest {
 
@@ -47,6 +52,21 @@ public class SingletonTest {
         System.out.println(singletonService2);
         assertThat(singletonService1).isSameAs(singletonService2);
 
+    }
+
+    @Test
+    @DisplayName("스프링 컨테이너와 싱글톤")
+    public void 스프링_컨테이너() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        // 1. 조회
+        MemberService memberService1 = ac.getBean("memberService", MemberService.class);
+
+        // 2. 조회
+        MemberService memberService2 = ac.getBean("memberService", MemberService.class);
+
+        // 참조값이 같은 것을 확인
+        assertThat(memberService1).isSameAs(memberService2);
     }
 
 }
