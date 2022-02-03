@@ -1,5 +1,9 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService {
 
     /*
@@ -12,6 +16,8 @@ public class MemberServiceImpl implements MemberService {
     // 회원: DIP 원칙을 지키도록 수정
     private final MemberRepository memberRepository;
 
+    // 자동 의존관계 주입: @Autowired
+    @Autowired // ac.getBean(MemberRepository.class)
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
