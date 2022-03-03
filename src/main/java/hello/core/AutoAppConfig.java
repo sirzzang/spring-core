@@ -39,6 +39,12 @@ import org.springframework.context.annotation.FilterType;
  * 다만, 자바 언어 애노테이션은 상속 기능이 없기 때문에,
  *  애노테이션(@SpringBootApplication)이 다른 애노테이션(@ComponentScan)을 들고 있음을 알 수 있는 것은 스프링에서 지원하는 기능
  * </p>
+ * <p>
+ * 컴포넌트 스캔 시 중복 발생
+ * - 자동 vs 자동 빈 등록: 컴포넌트 스캔 시, 스프링 빈이 중복 등록이 되면 ConflictingBeanDefinitionException 예외 발생
+ * - 수동 vs 자동 빈 등록: 컴포넌트 스캔 시, 똑같은 이름으로 등록하면, 예외는 발생하지 않는데, overriding bean definition. 수동 등록된 빈이 우선권
+ * - 다만, 최근에는 후자의 경우에도 오류가 발생하도록 되어서, CoreApplication 실행 시, 스프링부트 에러 발생
+ * </p>
  */
 
 @Configuration
