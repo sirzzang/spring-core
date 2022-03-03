@@ -13,9 +13,11 @@ import org.springframework.context.annotation.FilterType;
  * 각 구현체 생성자에 @Autowired 지정 시, 스프링 컨테이너가 타입이 같은 빈을 찾아 의존관계 주입
  * </p>
  * <p>
- * - excludeFilters: 컴포넌트 스캔 시 제외
+ * - includeFilters: 컴포넌트 스캔 시 추가로 지정할 대상
+ * - excludeFilters: 컴포넌트 스캔 시 제외할 대상
  *      강의 구성 상, AppConfig 기존 파일을 남겨 두었기 때문에,
  *      AppConfig(Configuration 클래스이며, 이것도 @Component)는 스캔하지 않도록 excludeFilters 추가
+ * - 컴포넌트 스캔 시 필터링 타입: @Filter에서 사용할 수 있는 타입 -> ComponentFilterAppConfigTest 참고
  * </p>
  * <p>
  * - basePackage: 탐색 시작 위치. 해당 패키지부터 하위의 패키지를 탐색
