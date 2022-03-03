@@ -31,6 +31,21 @@ public class OrderServiceImpl implements OrderService {
         this.discountPolicy = discountPolicy;
     }
 
+    /** 수정자 주입을 통한 의존관계 주입
+     * private MemberRepository memberRepository;
+     * private DiscountPolicy discountPolicy;
+     *
+     * @Autowired
+     * public void setMemberRepository(MemberRepository memberRepository) {
+     *     this.memberRepository = memberRepository;
+     * }
+     *
+     * @Autowired
+     * public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+     *     this.discountPolicy = discountPolicy;
+     * }
+     */
+
 
     /* 문제
      - 인터페이스에만 의존하도록 변경하면 아래와 같이 코드를 짜면
