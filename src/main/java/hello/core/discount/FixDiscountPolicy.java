@@ -2,7 +2,9 @@ package hello.core.discount;
 
 import hello.core.member.Grade;
 import hello.core.member.Member;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FixDiscountPolicy implements DiscountPolicy {
 
     // TODO: 쿠폰에서 할인 금액 불러오는 경우는?
