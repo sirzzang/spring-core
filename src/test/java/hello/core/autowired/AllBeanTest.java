@@ -54,7 +54,5 @@ public class AllBeanTest {
             DiscountPolicy discountPolicy = policyMap.get(discountCode);
             return discountPolicy.discount(member, price);
         }
-
-
     }
 }
