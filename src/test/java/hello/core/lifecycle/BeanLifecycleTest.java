@@ -23,7 +23,7 @@ public class BeanLifecycleTest {
 
     @Configuration
     static class lifecycleConfig {
-        @Bean(initMethod = "init", destroyMethod = "close")
+        @Bean
         public NetworkClient networkClient() {
             System.out.println("true = " + true);
             NetworkClient networkClient = new NetworkClient();
