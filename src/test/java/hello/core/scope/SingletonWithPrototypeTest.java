@@ -53,6 +53,24 @@ public class SingletonWithPrototypeTest {
         assertThat(count2).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("서로 다른 싱글톤 빈은 서로 다른 프로토타입 빈을 주입 받는다.")
+    public void 서로_다른_싱글톤_빈에서의_프로토타입_빈_사용() {
+        // given
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(PrototypeBean.class, ClientBean.class, ClientBean2.class);
+
+        // when
+        ClientBean clientBean1 = ac.getBean(ClientBean.class);
+        int count1 = clientBean1.logic();
+
+        ClientBean2 clientBean2 = ac.getBean(ClientBean2.class);
+        int count2 = clientBean2.logic();
+
+        // then
+        assertThat(count1).isEqualTo(1);
+        assertThat(count2).isEqualTo(1);
+    }
+
     @Scope("prototype")
     @Getter
     static class PrototypeBean {
@@ -89,6 +107,18 @@ public class SingletonWithPrototypeTest {
 
         public int logic() {
             System.out.println("ClientBean.logic");
+            prototypeBean.addCount();
+            return prototypeBean.getCount();
+        }
+    }
+
+    @Scope("singleton")
+    @RequiredArgsConstructor
+    static class ClientBean2 {
+        private final PrototypeBean prototypeBean;
+
+        public int logic() {
+            System.out.println("ClientBean2.logic");
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }

@@ -22,7 +22,10 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 
-	//lombok 라이브러리 추가 시작
+	// Provider
+	implementation 'javax.inject:javax.inject:1'
+
+	//lombok 라이브러리
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testCompileOnly 'org.projectlombok:lombok'
